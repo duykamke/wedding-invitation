@@ -195,7 +195,11 @@ const submitRSVP = () => {
                 style="pointer-events: auto"
                 class="fixed top-6 right-6 z-50 text-white/80 border border-white/30 rounded-full px-4 py-1 hover:bg-white/10 font-display text-xs tracking-widest transition-colors"
             >
-                {{ locale === "en" ? "VI" : "EN" }}
+                {{
+                    locale === "en"
+                        ? "Chuyển sang Tiếng Việt"
+                        : "Switch to English"
+                }}
             </button>
 
             <div class="envelope-wrapper" :style="envelopeWrapperStyle">
@@ -1010,7 +1014,7 @@ body::-webkit-scrollbar-thumb {
 }
 @media (min-width: 1024px) {
     .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 

@@ -40,6 +40,3 @@ bun dev
 ```sh
 bun run build
 ```
-
-
-

@@ -43,7 +43,10 @@ const messages = {
         dresscode: {
             title: "Dress Code",
             male: "Gentlemen",
+            male_dresscode:
+                "Suit / Shirt & Trousers\n\nSolid Colors\n\nMinimal Patterns",
             female: "Ladies",
+            female_dresscode: "Elegant Dress / Gown\n\nSoft & Gentle Colors",
             no_white: "Please No White",
         },
         rsvp: {
@@ -75,7 +78,7 @@ const messages = {
             bride: "Cô Dâu",
         },
         family: {
-            groom_parents_title: "Trưởng Nam Của",
+            groom_parents_title: "Thứ Nam Của",
             groom_father: "Ông Nguyễn Ngọc Anh",
             groom_mother: "Bà Hoàng Thị Oanh",
             bride_parents_title: "Trưởng Nữ Của",
@@ -101,8 +104,12 @@ const messages = {
         dresscode: {
             title: "Trang Phục",
             male: "Nam Giới",
+            male_dresscode:
+                "SUIT / SƠ MI / QUẦN TÂY LỊCH SỰ\n\nTRƠN MÀU\n\nHẠN CHẾ HOA VĂN",
             female: "Nữ Giới",
-            no_white: "Vui Lòng Không Mặc Màu Trắng",
+            female_dresscode:
+                "ĐẦM/ VÁY / QUẦN DÀI THANH LỊCH\n\nMÀU SẮC TRANG NHÃ, NHẸ NHÀNG",
+            no_white: "VUI LÒNG KHÔNG MẶC MÀU TRẮNG",
         },
         rsvp: {
             respond_by: "Phản hồi trước 01/12",
@@ -121,7 +128,6 @@ const messages = {
 };
 
 export default createI18n({
-    legacy: false,
     locale: "en",
     fallbackLocale: "en",
     messages,

@@ -118,7 +118,7 @@ const messages = {
         rsvp: {
             respond_by: "Phản hồi trước 01/12",
             name: "Tên của bạn",
-            count: "Số lượng",
+            count: "Số lượng người tham dự",
             yes: "Sẽ Tham Dự",
             no: "Rất Tiếc Không Thể Tới",
             message: "Lời nhắn gửi...",

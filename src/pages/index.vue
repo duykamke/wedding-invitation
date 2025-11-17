@@ -2,6 +2,7 @@
 import { ref, reactive, onMounted, onUnmounted, computed, nextTick } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRouter, useRoute } from "vue-router";
+import { supabase } from '@/lib/supabaseClient';
 
 const { t, locale } = useI18n({ useScope: "global" });
 const router = useRouter();
@@ -9,6 +10,13 @@ const route = useRoute();
 
 const scrollY = ref(0);
 const rsvpSubmitted = ref(false);
+const formData = reactive({
+  name: '',
+  attendStatus: '',
+  count: 1,
+  message: '',
+});
+const errorMessage = ref('');
 const countdown = reactive({
     days: 0,
     hours: 0,
@@ -157,8 +165,33 @@ const toggleLanguage = async () => {
     });
 };
 
-const submitRSVP = () => {
-    rsvpSubmitted.value = true;
+const submitRSVP = async () => {
+  errorMessage.value = '';
+
+  if (!formData.name.trim()) {
+    errorMessage.value = t('rsvp.name_required');
+    return;
+  }
+
+  if (formData.attendStatus === 'yes' && (!formData.count || formData.count < 1 || formData.count > 20)) {
+    errorMessage.value = t('rsvp.count_invalid');
+    return;
+  }
+
+  const data = {
+    name: formData.name.trim(),
+    count: formData.attendStatus === 'yes' ? formData.count : 0,
+    message: formData.message.trim() || "",
+  };
+
+  const { error } = await supabase.from('rsvp').insert([data]);
+
+  if (error) {
+    errorMessage.value = t('rsvp.submit_error');
+    return;
+  }
+
+  rsvpSubmitted.value = true;
 };
 </script>
 
@@ -583,6 +616,7 @@ const submitRSVP = () => {
                             >
                                 <input
                                     type="text"
+                                    v-model="formData.name"
                                     :placeholder="t('rsvp.name')"
                                     class="font-display rsvp-input"
                                 />
@@ -594,7 +628,8 @@ const submitRSVP = () => {
                                     >
                                         <input
                                             type="radio"
-                                            name="attend"
+                                            v-model="formData.attendStatus"
+                                            :value="'yes'"
                                             class="accent-pink"
                                             style="
                                                 accent-color: var(
@@ -609,7 +644,8 @@ const submitRSVP = () => {
                                     >
                                         <input
                                             type="radio"
-                                            name="attend"
+                                            v-model="formData.attendStatus"
+                                            :value="'no'"
                                             class="accent-pink"
                                             style="
                                                 accent-color: var(
@@ -620,11 +656,30 @@ const submitRSVP = () => {
                                         {{ t("rsvp.no") }}
                                     </label>
                                 </div>
+                                <div v-if="formData.attendStatus === 'yes'" class="mt-6 max-w-[200px] mx-auto">
+                                    <label class="block text-xs font-display mb-2 opacity-80 text-center">
+                                        {{ t("rsvp.count") }}
+                                    </label>
+                                    <input
+                                        type="number"
+                                        v-model.number="formData.count"
+                                        min="1"
+                                        max="20"
+                                        class="font-display rsvp-input w-full text-center"
+                                        :placeholder="t('rsvp.count')"
+                                    />
+                                </div>
                                 <input
                                     type="text"
+                                    v-model="formData.message"
                                     :placeholder="t('rsvp.message')"
                                     class="font-display rsvp-input"
                                 />
+                                <div v-if="errorMessage" class="mt-4 mb-2 p-2 bg-red-50/80 rounded-lg">
+                                    <p class="font-display text-sm text-red-600 text-center">
+                                        {{ errorMessage }}
+                                    </p>
+                                </div>
                                 <button
                                     class="mt-6 px-8 py-2 border border-accent text-accent font-display hover:bg-accent hover:text-white transition-colors uppercase tracking-widest text-sm"
                                 >

@@ -52,11 +52,15 @@ const messages = {
         rsvp: {
             respond_by: "Kindly respond by Dec 1st",
             name: "Your Name",
+            count: "Number of guests",
             yes: "Joyfully Accepts",
             no: "Regretfully Declines",
             message: "Message for the couple...",
             button: "Send Response",
             success_msg: "Thank you! We have received your response.",
+            name_required: "Name is required",
+            count_invalid: "Please enter a valid number (1-20)",
+            submit_error: "Failed to submit RSVP. Please try again.",
         },
         gallery: {
             title: "Gallery",
@@ -114,11 +118,15 @@ const messages = {
         rsvp: {
             respond_by: "Phản hồi trước 01/12",
             name: "Tên của bạn",
+            count: "Số lượng",
             yes: "Sẽ Tham Dự",
             no: "Rất Tiếc Không Thể Tới",
             message: "Lời nhắn gửi...",
             button: "Gửi Xác Nhận",
             success_msg: "Cảm ơn! Chúng tôi đã nhận được phản hồi của bạn.",
+            name_required: "Vui lòng nhập tên",
+            count_invalid: "Vui lòng nhập số hợp lệ (1-20)",
+            submit_error: "Gửi RSVP thất bại. Vui lòng thử lại.",
         },
         gallery: {
             title: "Khoảnh Khắc",

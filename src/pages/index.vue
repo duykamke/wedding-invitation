@@ -18,6 +18,9 @@ const formData = reactive({
 });
 const errorMessage = ref("");
 const isSubmitting = ref(false);
+const showToast = ref(false);
+const toastMessage = ref("");
+const toastType = ref("error");
 const countdown = reactive({
     days: 0,
     hours: 0,
@@ -166,20 +169,33 @@ const toggleLanguage = async () => {
     });
 };
 
+const showToastNotification = (message, type = "error") => {
+    toastMessage.value = message;
+    toastType.value = type;
+    showToast.value = true;
+
+    // Auto-hide after 4 seconds
+    setTimeout(() => {
+        showToast.value = false;
+    }, 4000);
+};
+
 const submitRSVP = async () => {
     errorMessage.value = "";
     isSubmitting.value = true;
 
     if (!formData.name.trim()) {
-        errorMessage.value = t("rsvp.name_required");
-        isSubmitting.value;
+        showToastNotification(t("rsvp.name_required"), "error");
+        isSubmitting.value = false;
+        return;
     }
 
     if (
         formData.attendStatus === "yes" &&
         (!formData.count || formData.count < 1 || formData.count > 20)
     ) {
-        errorMessage.value = t("rsvp.count_invalid");
+        showToastNotification(t("rsvp.count_invalid"), "error");
+        isSubmitting.value = false;
         return;
     }
 
@@ -192,10 +208,12 @@ const submitRSVP = async () => {
     const { error } = await supabase.from("rsvp").insert([data]);
 
     if (error) {
-        errorMessage.value = t("rsvp.submit_error");
+        showToastNotification(t("rsvp.submit_error"), "error");
+        isSubmitting.value = false;
         return;
     }
 
+    showToastNotification(t("rsvp.success_msg"), "success");
     rsvpSubmitted.value = true;
 };
 </script>
@@ -247,6 +265,27 @@ const submitRSVP = async () => {
                         : "Switch to English"
                 }}
             </button>
+
+            <!-- Toast Notification -->
+            <div
+                v-if="showToast"
+                class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 px-6 py-3 rounded-lg shadow-lg transition-all duration-300 ease-in-out font-display text-sm tracking-wide"
+                :class="[
+                    toastType === 'error'
+                        ? 'bg-red-600 text-white border border-red-700'
+                        : 'bg-green-600 text-white border border-green-700',
+                    showToast
+                        ? 'opacity-100 translate-y-0'
+                        : 'opacity-0 -translate-y-2',
+                ]"
+                style="pointer-events: auto"
+            >
+                <div class="flex items-center gap-2">
+                    <span v-if="toastType === 'error'" class="text-lg">⚠️</span>
+                    <span v-else class="text-lg">✓</span>
+                    {{ toastMessage }}
+                </div>
+            </div>
 
             <div class="envelope-wrapper" :style="envelopeWrapperStyle">
                 <div
@@ -687,16 +726,6 @@ const submitRSVP = async () => {
                                     :placeholder="t('rsvp.message')"
                                     class="font-display rsvp-input"
                                 />
-                                <div
-                                    v-if="errorMessage"
-                                    class="mt-4 mb-2 p-2 bg-red-50/80 rounded-lg"
-                                >
-                                    <p
-                                        class="font-display text-sm text-red-600 text-center"
-                                    >
-                                        {{ errorMessage }}
-                                    </p>
-                                </div>
                                 <button
                                     :disabled="isSubmitting"
                                     type="submit"

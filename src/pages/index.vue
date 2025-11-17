@@ -214,7 +214,7 @@ const submitRSVP = async () => {
                 :style="{ opacity: scrollY > 50 ? 0 : 0.7 }"
             >
                 <p class="uppercase tracking-widest text-sm font-display mb-1">
-                    Scroll to Open
+                    {{ t('scroll_to_open') }}
                 </p>
                 <svg
                     class="w-6 h-6 mx-auto"
@@ -1160,7 +1160,7 @@ body::-webkit-scrollbar-thumb {
 
 .scroll-indicator {
     position: fixed;
-    bottom: 20px;
+    bottom: 25%;
     left: 50%;
     transform: translateX(-50%);
     color: white;

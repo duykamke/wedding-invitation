@@ -6,7 +6,7 @@ const messages = {
         hero: {
             invitation_phrase: "You are cordially invited",
             date: "December 21st, 2025",
-            time: "Sunday at 16:30",
+            time: "Sunday at 17:30",
             venue_name: "HÔTEL du PARC HANOÏ",
             venue_addr: "84 Tran Nhan Tong, Hai Ba Trung, Hanoi",
         },
@@ -34,10 +34,10 @@ const messages = {
             welcome_time: "17:30",
             welcome_desc: "Cocktails & Canapes",
             ceremony: "Wedding Ceremony",
-            ceremony_time: "18:30",
+            ceremony_time: "18:00",
             ceremony_desc: "Exchange of Vows",
             party: "Dinner & Party",
-            party_time: "19:00",
+            party_time: "18:30",
             party_desc: "Fine Dining & Celebration",
         },
         dresscode: {
@@ -72,7 +72,7 @@ const messages = {
         hero: {
             invitation_phrase: "Thân Mời Tới Dự Lễ Thành Hôn",
             date: "21 Tháng 12, 2025",
-            time: "Chủ Nhật lúc 16:30",
+            time: "Chủ Nhật lúc 17:30",
             venue_name: "HÔTEL du PARC HANOÏ",
             venue_addr: "84 Trần Nhân Tông, Hai Bà Trưng, Hà Nội",
         },
@@ -100,10 +100,10 @@ const messages = {
             welcome_time: "17:30",
             welcome_desc: "Tiệc trà & Chụp ảnh",
             ceremony: "Làm Lễ",
-            ceremony_time: "18:30",
+            ceremony_time: "18:00",
             ceremony_desc: "Cử hành hôn lễ trang trọng",
             party: "Khai Tiệc",
-            party_time: "19:00",
+            party_time: "18:30",
             party_desc: "Dùng tiệc mặn & Chúc mừng",
         },
         dresscode: {

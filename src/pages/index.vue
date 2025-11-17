@@ -2,7 +2,7 @@
 import { ref, reactive, onMounted, onUnmounted, computed, nextTick } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRouter, useRoute } from "vue-router";
-import { supabase } from '@/lib/supabaseClient';
+import { supabase } from "@/lib/supabaseClient";
 
 const { t, locale } = useI18n({ useScope: "global" });
 const router = useRouter();
@@ -11,12 +11,12 @@ const route = useRoute();
 const scrollY = ref(0);
 const rsvpSubmitted = ref(false);
 const formData = reactive({
-  name: '',
-  attendStatus: '',
-  count: 1,
-  message: '',
+    name: "",
+    attendStatus: "",
+    count: 1,
+    message: "",
 });
-const errorMessage = ref('');
+const errorMessage = ref("");
 const isSubmitting = ref(false);
 const countdown = reactive({
     days: 0,
@@ -167,33 +167,36 @@ const toggleLanguage = async () => {
 };
 
 const submitRSVP = async () => {
-  errorMessage.value = '';
-  isSubmitting.value = true;
+    errorMessage.value = "";
+    isSubmitting.value = true;
 
-  if (!formData.name.trim()) {
-    errorMessage.value = t('rsvp.name_required');
-    isSubmitting.value
-  }
+    if (!formData.name.trim()) {
+        errorMessage.value = t("rsvp.name_required");
+        isSubmitting.value;
+    }
 
-  if (formData.attendStatus === 'yes' && (!formData.count || formData.count < 1 || formData.count > 20)) {
-    errorMessage.value = t('rsvp.count_invalid');
-    return;
-  }
+    if (
+        formData.attendStatus === "yes" &&
+        (!formData.count || formData.count < 1 || formData.count > 20)
+    ) {
+        errorMessage.value = t("rsvp.count_invalid");
+        return;
+    }
 
-  const data = {
-    name: formData.name.trim(),
-    count: formData.attendStatus === 'yes' ? formData.count : 0,
-    message: formData.message.trim() || "",
-  };
+    const data = {
+        name: formData.name.trim(),
+        count: formData.attendStatus === "yes" ? formData.count : 0,
+        message: formData.message.trim() || "",
+    };
 
-  const { error } = await supabase.from('rsvp').insert([data]);
+    const { error } = await supabase.from("rsvp").insert([data]);
 
-  if (error) {
-    errorMessage.value = t('rsvp.submit_error');
-    return;
-  }
+    if (error) {
+        errorMessage.value = t("rsvp.submit_error");
+        return;
+    }
 
-  rsvpSubmitted.value = true;
+    rsvpSubmitted.value = true;
 };
 </script>
 
@@ -216,7 +219,7 @@ const submitRSVP = async () => {
                 :style="{ opacity: scrollY > 50 ? 0 : 0.7 }"
             >
                 <p class="uppercase tracking-widest text-sm font-display mb-1">
-                    {{ t('scroll_to_open') }}
+                    {{ t("scroll_to_open") }}
                 </p>
                 <svg
                     class="w-6 h-6 mx-auto"
@@ -604,7 +607,9 @@ const submitRSVP = async () => {
 
                         <!-- 6. RSVP -->
                         <div class="scroll-section pb-8">
-                            <h2 class="font-display text-3xl mb-2">R.S.V.P.</h2>
+                            <h2 class="font-display text-3xl mb-2">
+                                {{ t("rsvp.title") }}
+                            </h2>
                             <p
                                 class="font-display mb-8 text-sm italic opacity-70"
                             >
@@ -658,8 +663,13 @@ const submitRSVP = async () => {
                                         {{ t("rsvp.no") }}
                                     </label>
                                 </div>
-                                <div v-if="formData.attendStatus === 'yes'" class="mt-6 max-w-[200px] mx-auto">
-                                    <label class="block text-xs font-display mb-2 opacity-80 text-center">
+                                <div
+                                    v-if="formData.attendStatus === 'yes'"
+                                    class="mt-6 max-w-[200px] mx-auto"
+                                >
+                                    <label
+                                        class="block text-xs font-display mb-2 opacity-80 text-center"
+                                    >
                                         {{ t("rsvp.count") }}
                                     </label>
                                     <input
@@ -677,8 +687,13 @@ const submitRSVP = async () => {
                                     :placeholder="t('rsvp.message')"
                                     class="font-display rsvp-input"
                                 />
-                                <div v-if="errorMessage" class="mt-4 mb-2 p-2 bg-red-50/80 rounded-lg">
-                                    <p class="font-display text-sm text-red-600 text-center">
+                                <div
+                                    v-if="errorMessage"
+                                    class="mt-4 mb-2 p-2 bg-red-50/80 rounded-lg"
+                                >
+                                    <p
+                                        class="font-display text-sm text-red-600 text-center"
+                                    >
                                         {{ errorMessage }}
                                     </p>
                                 </div>

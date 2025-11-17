@@ -50,6 +50,7 @@ const messages = {
             no_white: "Please No White",
         },
         rsvp: {
+            title: "Confirm Attendance",
             respond_by: "Kindly respond by Dec 1st",
             name: "Your Name",
             count: "Number of guests",
@@ -117,6 +118,7 @@ const messages = {
             no_white: "VUI LÒNG KHÔNG MẶC MÀU TRẮNG",
         },
         rsvp: {
+            title: "Xác nhận tham dự",
             respond_by: "Phản hồi trước 01/12",
             name: "Tên của bạn",
             count: "Số lượng người tham dự",

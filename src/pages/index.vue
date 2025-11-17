@@ -17,6 +17,7 @@ const formData = reactive({
   message: '',
 });
 const errorMessage = ref('');
+const isSubmitting = ref(false);
 const countdown = reactive({
     days: 0,
     hours: 0,
@@ -167,10 +168,11 @@ const toggleLanguage = async () => {
 
 const submitRSVP = async () => {
   errorMessage.value = '';
+  isSubmitting.value = true;
 
   if (!formData.name.trim()) {
     errorMessage.value = t('rsvp.name_required');
-    return;
+    isSubmitting.value
   }
 
   if (formData.attendStatus === 'yes' && (!formData.count || formData.count < 1 || formData.count > 20)) {
@@ -681,9 +683,19 @@ const submitRSVP = async () => {
                                     </p>
                                 </div>
                                 <button
+                                    :disabled="isSubmitting"
+                                    type="submit"
                                     class="mt-6 px-8 py-2 border border-accent text-accent font-display hover:bg-accent hover:text-white transition-colors uppercase tracking-widest text-sm"
                                 >
-                                    {{ t("rsvp.button") }}
+                                    <span v-if="!isSubmitting">
+                                        {{ t("rsvp.button") }}
+                                    </span>
+                                    <div
+                                        v-else
+                                        class="inline-block h-4 w-4 animate-spin rounded-full border-2 border-accent border-t-transparent"
+                                        role="status"
+                                        aria-label="loading"
+                                    ></div>
                                 </button>
                             </form>
                             <div v-else class="py-8">

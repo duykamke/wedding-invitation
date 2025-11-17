@@ -65,6 +65,7 @@ const messages = {
         gallery: {
             title: "Gallery",
         },
+        scroll_to_open: "Scroll down to open",
     },
     vi: {
         names: "Ngọc Duy & Natalia",
@@ -132,6 +133,7 @@ const messages = {
             title: "Khoảnh Khắc",
             subtitle: "Những hình ảnh kỷ niệm của chúng tôi",
         },
+        scroll_to_open: "Cuộn xuống để mở",
     },
 };
 

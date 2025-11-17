@@ -138,7 +138,7 @@ const messages = {
             title: "Khoảnh Khắc",
             subtitle: "Những hình ảnh kỷ niệm của chúng tôi",
         },
-        scroll_to_open: "Cuộn xuống để mở",
+        scroll_to_open: "Vuốt lên để mở",
     },
 };
 

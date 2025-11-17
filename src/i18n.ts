@@ -22,7 +22,7 @@ const messages = {
             groom_mother: "Mrs. Hoang Thi Oanh",
             bride_parents_title: "Daughter of",
             bride_father: "Mr. Miroslaw Sulecki",
-            bride_mother: "Mrs. Anna Lisowska",
+            bride_mother: "Mrs. Anna Sulecka",
         },
         venue: {
             title: "The Venue",
@@ -88,7 +88,7 @@ const messages = {
             groom_mother: "Bà Hoàng Thị Oanh",
             bride_parents_title: "Trưởng Nữ Của",
             bride_father: "Ông Miroslaw Sulecki",
-            bride_mother: "Bà Anna Lisowska",
+            bride_mother: "Bà Anna Sulecka",
         },
         venue: {
             title: "Địa Điểm",

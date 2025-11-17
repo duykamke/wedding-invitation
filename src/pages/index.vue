@@ -190,6 +190,12 @@ const submitRSVP = async () => {
         return;
     }
 
+    if (!formData.attendStatus) {
+        showToastNotification(t("rsvp.attend_status_required"), "error");
+        isSubmitting.value = false;
+        return;
+    }
+
     if (
         formData.attendStatus === "yes" &&
         (!formData.count || formData.count < 1 || formData.count > 20)

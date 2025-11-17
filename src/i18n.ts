@@ -60,6 +60,8 @@ const messages = {
             button: "Send Response",
             success_msg: "Thank you! We have received your response.",
             name_required: "Name is required",
+            attend_status_required:
+                "Please select whether you will attend or not",
             count_invalid: "Please enter a valid number (1-20)",
             submit_error: "Failed to submit RSVP. Please try again.",
         },
@@ -128,6 +130,7 @@ const messages = {
             button: "Gửi Xác Nhận",
             success_msg: "Cảm ơn! Chúng tôi đã nhận được phản hồi của bạn.",
             name_required: "Vui lòng nhập tên",
+            attend_status_required: "Vui lòng chọn bạn có tham dự hay không.",
             count_invalid: "Vui lòng nhập số hợp lệ (1-20)",
             submit_error: "Gửi RSVP thất bại. Vui lòng thử lại.",
         },
